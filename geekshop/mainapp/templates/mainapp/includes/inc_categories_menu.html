@@ -1,0 +1,15 @@
+<ul class="links-menu">
+    <li>
+        <a href="/products/0"
+            {% if request.resolver_match.2.pk == 0 %}class="active"{% endif %}>
+            все
+        </a>
+    </li>
+    {% for link in links_menu %}
+        <li>
+            <a href="/products/{{ link.id }}"
+               {% if request.resolver_match.2.pk == link.id %}class="active"{% endif %}
+            >{{ link.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
