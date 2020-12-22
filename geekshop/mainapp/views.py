@@ -12,19 +12,20 @@ def main(request):
     content = {
         'title': 'Главная',
         'products': products,
-        'basket': get_basket(request.user),
+        # 'basket': get_basket(request.user),
     }
     return render(request, 'mainapp/index.html', content)
 
 
-def get_basket(user):
-    if user.is_authenticated:
-        return Basket.objects.filter(user=user)
-    return []
+# def get_basket(user):
+#     if user.is_authenticated:
+#         return Basket.objects.filter(user=user)
+#     return []
 
 def get_hot_product():
     products_list = Product.objects.all()
     return random.sample(list(products_list), 1)[0]
+
 
 def get_same_products(hot_product):
     return Product.objects.filter(category__pk=hot_product.category.pk).exclude(pk=hot_product.pk)[:3]
@@ -56,7 +57,7 @@ def products(request, pk=None, page=1):
             'products': products_paginator,
             'category': category,
             # 'basket': quantity_and_price
-            'basket': get_basket(request.user),
+            # 'basket': get_basket(request.user),
             'hot_product': get_hot_product(),
         }
 
@@ -68,7 +69,7 @@ def products(request, pk=None, page=1):
     content = {
         'title': 'Продукты',
         'links_menu': links_menu,
-        'basket': get_basket(request.user),
+        # 'basket': get_basket(request.user),
         'hot_product': hot_product,
         'same_products': same_products,
     }
@@ -82,16 +83,18 @@ def product(request, pk):
         'title': title,
         'links_menu': ProductCategory.objects.all(),
         'product': get_object_or_404(Product, pk=pk),
-        'basket': get_basket(request.user),
+        # 'basket': get_basket(request.user),
     }
     return render(request, 'mainapp/product.html', content)
+
 
 def contacts(request):
     content = {
         'title': 'Контакты',
-        'basket': get_basket(request.user),
+        # 'basket': get_basket(request.user),
     }
     return render(request, 'mainapp/contact.html', content)
+
 
 def not_found(request, exception):
     return render(request, '404.html', {'item': 'item'}, status=404)
