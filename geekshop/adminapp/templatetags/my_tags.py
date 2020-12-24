@@ -4,11 +4,13 @@ from django.conf import settings
 
 register = template.Library()
 
+
 def media_folder_users(string):
     if not string:
         string = 'users_avatars/default.jpg'
+        return f'{settings.MEDIA_URL}{string}'
 
-    return f'{settings.MEDIA_URL}{string}'
+    return f'{string}'
 
 
 @register.filter(name='media_folder_products')

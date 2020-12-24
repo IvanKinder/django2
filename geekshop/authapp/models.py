@@ -34,7 +34,7 @@ class ShopUserProfile(models.Model):
     tagline = models.CharField(max_length=128, blank=True, verbose_name='теги')
     about_me = models.TextField(blank=True, verbose_name='о себе')
     gender = models.CharField(max_length=1, blank=True, choices=GENDER_CHOICES, verbose_name='пол')
-    avatar = models.CharField(max_length=128, blank=True, verbose_name='аватар')
+    avatar = models.CharField(max_length=512, blank=True, verbose_name='аватар')
 
     @receiver(post_save, sender=ShopUser)
     def create_user_profile(sender, instance, created, **kwargs):

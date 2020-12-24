@@ -5,7 +5,7 @@ from urllib.parse import urlunparse, urlencode
 import requests
 from django.utils import timezone
 from social_core.exceptions import AuthForbidden
-from authapp.models import ShopUserProfile
+from authapp.models import ShopUserProfile, ShopUser
 
 
 def save_user_profile(backend, user, response, *args, **kwargs):
@@ -16,7 +16,7 @@ def save_user_profile(backend, user, response, *args, **kwargs):
                           'api.vk.com',
                           '/method/users.get',
                           None,
-                          urlencode(OrderedDict(fields=','.join(('bdate', 'sex', 'about', 'photo_50')),
+                          urlencode(OrderedDict(fields=','.join(('bdate', 'sex', 'about', 'photo_100')),
                                                 access_token=response['access_token'],
                                                 v='5.92')),
                           None
@@ -45,6 +45,6 @@ def save_user_profile(backend, user, response, *args, **kwargs):
             user.delete()
             raise AuthForbidden('social_core.backends.vk.VKOAuth2')
 
-    if data['photo_50']:
-        user.shopuserprofile.avatar = data['photo_50']
+    if data['photo_100']:
+        user.shopuserprofile.avatar = data['photo_100']
     user.save()
