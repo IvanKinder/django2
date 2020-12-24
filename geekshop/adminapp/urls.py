@@ -30,7 +30,7 @@ urlpatterns = [
     path('products/read/category/<pk>', adminapp.products, name='products'),
     # path('products/read/<pk>', adminapp.product_read, name='product_read'),
     path('products/read/<pk>', adminapp.ProductDetailView.as_view(), name='product_read'),
-    path('products/update/<pk>/', adminapp.product_update, name='product_update'),
+    path('products/update/<pk>/', adminapp.ProductUpdateView.as_view(), name='product_update'),
     path('products/delete/<pk>/', adminapp.product_delete, name='product_delete'),
 
 ]
