@@ -10,9 +10,11 @@ from mainapp.models import ProductCategory, Product
 
 JSON_PATH = os.path.join(settings.BASE_DIR, 'mainapp/json')
 
+
 def load_json_data(file_name):
     with open(os.path.join(JSON_PATH, file_name + '.json')) as json_file:
         return json.load(json_file)
+
 
 class Command(BaseCommand):
 

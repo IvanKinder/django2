@@ -329,21 +329,7 @@ class ProductDetailView(DetailView):
 #     }
 #
 #     return render(request, 'adminapp/product_update.html', content)
-class ProductCategoryUpdateView(UpdateView):
-    model = Product
-    template_name = 'adminapp/category_update.html'
-    success_url = reverse_lazy('admin:categories')
-    # fields = '__all__'  # без стилей
-    form_class = ProductCategoryEditForm
 
-    @method_decorator(user_passes_test(lambda u: u.is_superuser))
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'категории/редактирование'
-        return context
 
 class ProductUpdateView(UpdateView):
     model = Product
