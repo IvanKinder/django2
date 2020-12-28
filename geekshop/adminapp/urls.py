@@ -33,4 +33,7 @@ urlpatterns = [
     path('products/update/<pk>/', adminapp.ProductUpdateView.as_view(), name='product_update'),
     path('products/delete/<pk>/', adminapp.product_delete, name='product_delete'),
 
+    path('orders/', adminapp.OrderListView.as_view(), name='orders'),
+    path('orders/update/<int:pk>/', adminapp.OrderUpdateView.as_view(), name='order_update'),
+
 ]

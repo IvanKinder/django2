@@ -5,7 +5,7 @@ from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
-from adminapp.forms import ShopUserAdminEditForm, ProductCategoryEditForm, ProductEditForm
+from adminapp.forms import ShopUserAdminEditForm, ProductCategoryEditForm, ProductEditForm, OrderEditForm
 from authapp.forms import ShopUserRegisterForm
 from authapp.models import ShopUser
 
@@ -23,6 +23,8 @@ from mainapp.models import ProductCategory, Product
 #         'title': title
 #     }
 #     return render(request, 'adminapp/users.html', content)
+from ordersapp.models import Order
+
 
 class UsersListView(ListView):
     model = ShopUser
@@ -363,3 +365,28 @@ def product_delete(request, pk):
         'product_to_delete': product_item
     }
     return render(request, 'adminapp/product_delete.html', content)
+
+
+class OrderListView(ListView):
+    model = Order
+    template_name = 'adminapp/orders.html'
+
+    @method_decorator(user_passes_test(lambda u: u.is_superuser))
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+
+class OrderUpdateView(UpdateView):
+    model = Order
+    template_name = 'adminapp/orders.html'
+    success_url = reverse_lazy('admin:orders')
+    form_class = OrderEditForm
+
+    @method_decorator(user_passes_test(lambda u: u.is_superuser))
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'заказы/редактирование'
+        return context

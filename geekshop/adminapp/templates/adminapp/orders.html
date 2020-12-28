@@ -1,0 +1,22 @@
+{% extends 'adminapp/base.html' %}
+{% load my_tags %}
+
+{% block content %}
+  <div class="orders_list">
+    {% for object in object_list %}
+      <div class="user_record {% if not object.is_active %}not_active{% endif %}">
+          <button>
+            <a href={% url 'admin:order_update' object.pk %}>
+              редактировать
+            </a>
+          </button>
+        <div class="user_name">
+          <p><strong>{{ object.user.username }}</strong></p>
+        </div>
+        <div class="user_name">
+          <p><strong>{{ object.status }}</strong></p>
+        </div>
+      </div>
+    {% endfor%}
+  </div>
+{% endblock %}
