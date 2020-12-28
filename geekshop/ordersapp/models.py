@@ -43,5 +43,6 @@ class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='продукт')
     quantity = models.PositiveIntegerField(default=0, verbose_name='количество')
 
-    def get_product_cost(self):
+    @property
+    def product_cost(self):
         return self.product.price * self.quantity
