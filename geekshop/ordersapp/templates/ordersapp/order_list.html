@@ -34,11 +34,11 @@
                        </a>
                    </td>
                    <td>
-{#                       {% if item.status == 'FM' %}#}
-{#                         <a href="{% url 'ordersapp:order_update' item.pk %}">#}
-{#                           редактировать#}
-{#                         </a>#}
-{#                       {% endif %}#}
+                       {% if item.status == 'FM' %}
+                         <a href="{% url 'ordersapp:order_update' item.pk %}">
+                           редактировать
+                         </a>
+                       {% endif %}
                    </td>
                    <td>
 {#                       {% if item.status == 'FM' %}#}
