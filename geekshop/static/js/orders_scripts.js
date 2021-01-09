@@ -69,4 +69,6 @@ window.onload = function () {
         prefix: 'orderitems',
         removed: deleteOrderItem
     });
+
+    
 }
