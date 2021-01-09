@@ -70,5 +70,21 @@ window.onload = function () {
         removed: deleteOrderItem
     });
 
-    
+    $('select').click(function () {
+        var target = event.target;
+        console.log(target.name);
+        console.log(target.value);
+        console.log(target);
+
+
+        // if (target) {
+        //     $.ajax({
+        //         url: "/order/edit/" + target.value,
+        //
+        //         success: function (data) {
+        //             console.log('ajax done');
+        //         },
+        //     });
+        // }
+    })
 }
