@@ -3,6 +3,7 @@ from django.contrib import auth
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 from django.urls import reverse
@@ -35,6 +36,7 @@ def verify(request, email, activation_key):
         print('Ошибка')
 
 
+@csrf_exempt
 def login(request):
     login_form = ShopUserLoginForm(data=request.POST)
     next_url = request.GET.get('next', '')
