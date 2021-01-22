@@ -21,6 +21,18 @@ def get_links_menu():
         return ProductCategory.objects.filter(is_active=True)
 
 
+def get_category(pk):
+    if settings.LOW_CACHE:
+        key = f'category_{pk}'
+        category = cache.get(key)
+        if category is None:
+            category = get_object_or_404(ProductCategory, pk=pk)
+            cache.set(key, category)
+        return category
+    else:
+        return get_object_or_404(ProductCategory, pk=pk)
+
+
 def main(request):
     # products = Product.objects.all()[:4]
     products = Product.objects.filter(is_active=True, category__is_active=True).select_related('category')[:3]
@@ -55,7 +67,7 @@ def products(request, pk=None, page=1):
             category = {'name': 'все', 'pk': 0}
         else:
             # category = ProductCategory.objects.get(pk=pk)
-            category = get_object_or_404(ProductCategory, pk=pk)
+            category = get_category(pk)
             products_list = Product.objects.filter(category__pk=pk)
 
         paginator = Paginator(products_list, 2)
