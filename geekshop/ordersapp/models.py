@@ -37,6 +37,12 @@ class Order(models.Model):
         _total_cost = sum(list(map(lambda x: x.product_cost, _items)))
         return _total_cost
 
+    def get_summary(self):
+        _items = self.orderitems.select_related()
+        return {
+            'get_total_quantity': sum(list(map(lambda x: x.quantity, _items))),
+            'get_tota;_cost': sum(list(map(lambda x: x.product_cost, _items)))
+        }
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='заказ', related_name='orderitems')
