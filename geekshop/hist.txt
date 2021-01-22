@@ -1,0 +1,55 @@
+    1  exit
+    2  ssh-keygen
+    3  cat /root/.ssh/id_rsa.pub
+    4  apt update
+    5  apt install nginx
+    6  apt install postgresql postgresql-contrib
+    7  apt install python3-venv
+    8  apt install git-core
+    9  apt install mc
+   10  mc
+   11  mcedit
+   12  mcedit /etc/postgresql/12/main/pg_hba.conf
+   13  systemctl restart postgresql
+   14  systemctl status postgresql
+   15  useradd -g www-data -m django
+   16  cd /home/django
+   17  git clone git@github.com:IvanKinder/django2.git
+   18  cd django2
+   19  l
+   20  git checkout l5
+   21  l
+   22  cd geekshop
+   23  l
+   24  python3 -m venv env
+   25  l
+   26  source env/bin/activate
+   27  pip3 install -r requirements.txt
+   28  git pull
+   29  pip3 install -r requirements.txt
+   30  psql -U postgres 
+   31  psql -U postgres
+   32  mcedit /etc/postgresql/12/main/pg_hba.conf
+   33  psql -U postgres
+   34  systemctl restart postgresql
+   35  psql -U postgres
+   36  python3 manage.py migrate
+   37  python3 manage.py fill_db
+   38  python3 manage.py runserver
+   39  pip3 install gunicorn
+   40  mcedit /etc/systemd/system/gunicorn.service
+   41  systemctl enable gunicorn
+   42  systemctl start gunicorn
+   43  systemctl status gunicorn
+   44  chown -R django /home/django/
+   45  chmod -R 755 /home/django/django2/geekshop/
+   46  systemctl restart gunicorn
+   47  systemctl status gunicorn
+   48  l
+   49  ls
+   50  mcedit /etc/nginx/sites-available/geekshop
+   51  ln -s /etc/nginx/sites-available/geekshop /etc/nginx/sites-enabled/
+   52  nginx -t
+   53  systemctl restart nginx
+   54  history
+   55  history > hist.txt
