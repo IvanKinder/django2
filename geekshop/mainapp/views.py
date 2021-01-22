@@ -4,6 +4,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404
+from django.views.decorators.cache import cache_page
 
 from basketapp.models import Basket
 from mainapp.models import Product, ProductCategory
@@ -58,6 +59,7 @@ def get_same_products(hot_product):
     return Product.objects.filter(category__pk=hot_product.category.pk).exclude(pk=hot_product.pk)[:3]
 
 
+@cache_page(3600)
 def products(request, pk=None, page=1):
     links_menu = get_links_menu()
 
