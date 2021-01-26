@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.db import connection
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
 
@@ -25,13 +26,29 @@ def basket(request):
 def add(request, pk):
     if 'login' in request.META.get('HTTP_REFERER'):
         return HttpResponseRedirect(reverse('mainapp:product', args=[pk]))
-    product = get_object_or_404(Product, pk=pk)
-    basket_item = Basket.objects.filter(user=request.user, product=product).first()
 
-    if not basket_item:
-        basket_item = Basket(user=request.user, product=product)
-    basket_item.quantity += 1
-    basket_item.save()
+    product = get_object_or_404(Product, pk=pk)
+    # basket_item = Basket.objects.filter(user=request.user, product=product).first()
+    #
+    # if not basket_item:
+    #     basket_item = Basket(user=request.user, product=product)
+    # basket_item.quantity += 1
+    # basket_item.save()
+    #
+    # return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    old_basket_item = Basket.objects.filter(user=request.user, product=product).first()
+
+    if old_basket_item:
+        old_basket_item[0].quantity += 1
+        old_basket_item[0].quantity = F('quantity') + 1
+        old_basket_item[0].save()
+
+        update_queries = list(filter(lambda x: 'UPDATE' in x['sql'], connection.queries))
+        print(f'query basket add: {update_queries}')
+    else:
+        new_basket_item = Basket(user=request.user, product=product)
+        new_basket_item.quantity += 1
+        new_basket_item.save()
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
