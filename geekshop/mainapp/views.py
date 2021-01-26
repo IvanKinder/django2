@@ -43,8 +43,8 @@ def products(request, pk=None, page=1):
         else:
             # category = ProductCategory.objects.get(pk=pk)
             category = get_object_or_404(ProductCategory, pk=pk)
-            # products_list = Product.objects.filter(category__pk=pk)
-            products_list = Product.objects.filter(Q(category__pk=1) | Q(category__pk=2))
+            products_list = Product.objects.filter(category__pk=pk)
+            # products_list = Product.objects.filter(Q(category__pk=1) | Q(category__pk=2))
 
         paginator = Paginator(products_list, 2)
         try:
