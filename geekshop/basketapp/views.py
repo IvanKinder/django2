@@ -44,8 +44,8 @@ def add(request, pk):
         old_basket_item.quantity = F('quantity') + 1
         old_basket_item.save()
 
-        update_queries = list(filter(lambda x: 'UPDATE' in x['sql'], connection.queries))
-        print(f'query basket add: {update_queries}')
+        # update_queries = list(filter(lambda x: 'UPDATE' in x['sql'], connection.queries))
+        # print(f'query basket add: {update_queries}')
     else:
         new_basket_item = Basket(user=request.user, product=product)
         new_basket_item.quantity += 1
