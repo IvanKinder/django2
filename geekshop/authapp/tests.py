@@ -36,5 +36,17 @@ class TestAuthUserTestCase(TestCase):
         response = self.client.get('/auth/logout/')
         self.assertEqual(response.status_code, 302)
 
+    def test_basket_user_login_redirect(self):
+        response = self.client.get('/basket/')
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, '/auth/login/?next=/basket/')
+
+        self.client.login(username='django', password='geekbrains')
+
+        response = self.client.get('/basket/')
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.request['PATH_INFO'], '/basket/')
+
     def tearDown(self):
         call_command('sqlsequencereset', 'mainapp', 'authapp', 'ordersapp', 'basketapp')
