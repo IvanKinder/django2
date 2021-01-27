@@ -257,11 +257,6 @@ class ProductCategoryDeleteView(DeleteView):
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
         category_products = Product.objects.filter(category__pk=str(self.object.pk))
-        # test_product = category_products[0]
-        # category_products = str(self.object.pk)
-
-        # with open('log.txt', 'w') as log_file:
-        #     log_file.write(str(test_product.is_active))
 
         if self.object.is_active:
             self.object.is_active = False
@@ -270,8 +265,6 @@ class ProductCategoryDeleteView(DeleteView):
                 product.save()
         else:
             self.object.is_active = True
-            # test_product.is_active = True
-            # test_product.save()
             for product in category_products:
                 product.is_active = True
                 product.save()
