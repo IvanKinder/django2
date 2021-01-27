@@ -256,22 +256,22 @@ class ProductCategoryDeleteView(DeleteView):
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
-        category_products = Product.objects.filter(category__pk=str(self.object.pk))
+        category_products = str(Product.objects.filter(category__pk=str(self.object.pk)).is_active)
         # category_products = str(self.object.pk)
 
-        # with open('log.txt', 'w') as log_file:
-        #     log_file.write(category_products)
+        with open('log.txt', 'w') as log_file:
+            log_file.write(category_products)
 
         if self.object.is_active:
             self.object.is_active = False
-            for product in category_products:
-                product.object.is_active = False
-                product.object.save()
+            # for product in category_products:
+            #     product.object.is_active = False
+            #     product.object.save()
         else:
             self.object.is_active = True
-            for product in category_products:
-                product.object.is_active = True
-                product.object.save()
+            # for product in category_products:
+            #     product.object.is_active = True
+            #     product.object.save()
         self.object.save()
         # self.object.is_active = False
         # self.object.save()
