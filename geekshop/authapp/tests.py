@@ -25,6 +25,7 @@ class TestAuthUserTestCase(TestCase):
         response = self.client.get('/auth/login/')
         self.assertEqual(response.status_code, 200)
         self.assertFalse(response.context['user'].is_anonymous)
+        self.assertEqual(response.context['user'], self.superuser)
         # self.assertContains(response, 'Пользователь', status_code=200)
 
     def tearDown(self):
