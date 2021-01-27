@@ -256,7 +256,7 @@ class ProductCategoryDeleteView(DeleteView):
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
-        category_products = str(Product.objects.filter(category__pk=str(self.object.pk)).is_active)
+        category_products = str(Product.objects.filter(category__pk=str(self.object.pk)).object.is_active)
         # category_products = str(self.object.pk)
 
         with open('log.txt', 'w') as log_file:
