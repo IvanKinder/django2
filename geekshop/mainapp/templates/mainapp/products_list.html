@@ -42,7 +42,7 @@
                     <div class="block">
 {#                    {% url 'basket:add' product.pk %}#}
                         <a href="{% url 'mainapp:product' product.pk %}">
-                            <img style="height: 100%; width: 100%" src="/media/{{ product.image }}" alt="{{ product.short_desc }}">
+                            <img style="height: 100%; width: 100%" src="/media/products_images/{{ product.image }}" alt="{{ product.short_desc }}">
                             <div class="text">
                                 <img src="{% static 'img/icon-hover.png'%}" alt="hover-icon">
                                 <h4>{{ product.name }}</h4>
