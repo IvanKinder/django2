@@ -1,7 +1,7 @@
 [{
   "category": "классика",
   "name": "хорошее кресло 2",
-  "image": "static/img/product-41.jpg",
+  "image": "media/products_images/product-41.jpg",
   "short_desc": "норм кресло 2",
   "discription": "",
   "price": 12000,
@@ -10,7 +10,7 @@
 {
   "category": "модерн",
   "name": "хорошее кресло 0",
-  "image": "static/img/product-41.jpg",
+  "image": "media/products_images/product-41.jpg",
   "short_desc": "норм кресло 0",
   "discription": "",
   "price": 10000,
@@ -19,7 +19,7 @@
 {
   "category": "офис",
   "name": "стул",
-  "image": "static/img/product-41.jpg",
+  "image": "media/products_images/product-41.jpg",
   "short_desc": "норм стул",
   "discription": "",
   "price": 2000,
@@ -28,7 +28,7 @@
 {
   "category": "классика",
   "name": "хороший диван",
-  "image": "static/img/product-41.jpg",
+  "image": "media/products_images/product-41.jpg",
   "short_desc": "норм диван",
   "discription": "",
   "price": 22000,
@@ -37,7 +37,7 @@
 {
   "category": "дом",
   "name": "диван 2",
-  "image": "static/img/product-41.jpg",
+  "image": "media/products_images/product-41.jpg",
   "short_desc": "норм диван 2",
   "discription": "",
   "price": 30000,
@@ -46,7 +46,7 @@
 {
   "category": "классика",
   "name": "стол 0",
-  "image": "static/img/product-41.jpg",
+  "image": "media/products_images/product-41.jpg",
   "short_desc": "норм стол 0",
   "discription": "",
   "price": 25000,
@@ -55,7 +55,7 @@
 {
   "category": "модерн",
   "name": "изысканный стол",
-  "image": "static/img/product-41.jpg",
+  "image": "media/products_images/product-41.jpg",
   "short_desc": "изысканный стол",
   "discription": "",
   "price": 72500,
@@ -64,7 +64,7 @@
 {
   "category": "классика",
   "name": "хорошее кресло 5",
-  "image": "static/img/product-41.jpg",
+  "image": "media/products_images/product-41.jpg",
   "short_desc": "норм кресло 5",
   "discription": "",
   "price": 11000,
