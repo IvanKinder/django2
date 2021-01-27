@@ -259,7 +259,7 @@ class ProductCategoryDeleteView(DeleteView):
         # category_products = Product.objects.filter(category__pk=self.object.pk)
         category_products = 'test'
 
-        with open('log.txt') as log_file:
+        with open('log.txt', 'w') as log_file:
             log_file.write(category_products)
 
         if self.object.is_active:
