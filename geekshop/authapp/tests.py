@@ -20,5 +20,12 @@ class TestAuthUserTestCase(TestCase):
         self.assertTrue(response.context['user'].is_anonymous)
         self.assertNotContains(response, 'Пользователь', status_code=200)
 
+        self.client.login(username='django', password='geekbrains')
+
+        response = self.client.get('/auth/login/')
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(response.context['user'].is_anonymous)
+        # self.assertContains(response, 'Пользователь', status_code=200)
+
     def tearDown(self):
         call_command('sqlsequencereset', 'mainapp', 'authapp', 'ordersapp', 'basketapp')
