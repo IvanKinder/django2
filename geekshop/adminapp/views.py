@@ -261,7 +261,7 @@ class ProductCategoryDeleteView(DeleteView):
         # category_products = str(self.object.pk)
 
         with open('log.txt', 'w') as log_file:
-            log_file.write(str(test_product))
+            log_file.write(str(test_product.is_active))
 
         if self.object.is_active:
             self.object.is_active = False
