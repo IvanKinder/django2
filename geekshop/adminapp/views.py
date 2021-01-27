@@ -266,12 +266,14 @@ class ProductCategoryDeleteView(DeleteView):
         if self.object.is_active:
             self.object.is_active = False
             test_product.is_active = False
+            test_product.save()
             # for product in category_products:
             #     product.object.is_active = False
             #     product.object.save()
         else:
             self.object.is_active = True
             test_product.is_active = True
+            test_product.save()
             # for product in category_products:
             #     product.object.is_active = True
             #     product.object.save()
