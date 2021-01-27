@@ -16,7 +16,7 @@ def media_folder_users(string):
 @register.filter(name='media_folder_products')
 def media_folder_products(string):
     if not string:
-        string = 'products_images/default.jpg'
+        string = 'products_images/default.png'
 
     return f'{settings.MEDIA_URL}{string}'
 
